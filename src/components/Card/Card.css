@@ -1,0 +1,63 @@
+.card {
+    background-color: rgb(221, 214, 214);
+    border-radius: 10px;
+}
+
+.card__img {
+    background-color: burlywood;
+    background-size: contain;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.card__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card__text {
+    font-weight: bold;
+    margin: 20px 10px;
+    color: rgb(34, 33, 33);
+    opacity: 0.9;
+}
+
+.card__buttons-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card__button {
+    background-repeat: none;
+    background-size: cover;
+    margin-right: 10px;
+    height: 18px;
+    width: 21px;
+    border: none;
+    background-color: transparent;
+}
+
+.card__button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.card__button_delete {
+    background-image: url('../../images/delete.svg');
+}
+
+.card__button_like {
+    background-image: url('../../images/heart.svg');
+    margin-right: 20px;
+}
+
+.card__button_like_active {
+    background-image: url('../../images/heart-black.svg');
+    margin-right: 20px;
+}
+
+@media (max-width: 500px) {
+
+  }
