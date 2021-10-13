@@ -1,23 +1,25 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { deleteCard } from '../../store/cardReducer';
 import Card from '../Card/Card';
 import './CardList.css';
 
 function CardList(props) {
-
-  console.log(props.cards.cards)
+  
 
   return (
     <section className="card-list">
         <div className="card-list__wrap">
-            {/* {props.cards.cards.map((card) => (
+            {props.cards.map((card, index) => (
                 <Card 
-                key={card.id}
+                key={index}
                 url={card.image}
                 name={card.name}
                 id={card.id}
+                isLiked={props.isLiked}
+                likedCard={props.likedCard}
+                remove={() => props.removeCard(card)}
                 />
-            ))} */}
+            ))}
         </div>
     </section>
   );

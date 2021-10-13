@@ -4,7 +4,7 @@ function Header() {
 
   return (
     <header className="header">
-        <h1 className="header__title">Catsogram</h1>
+        <h1 className="header__title">Rick and Morty</h1>
     </header>
   );
 }

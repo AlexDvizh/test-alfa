@@ -1,4 +1,4 @@
-import { addAllCards } from "../store/cardReducer";
+import { addAllCards, filterCards } from "../store/cardReducer";
 
 const URL = 'https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8,9,10';
 

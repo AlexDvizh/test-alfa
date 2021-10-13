@@ -6,11 +6,13 @@ function Card(props) {
   const [like, setLike] = useState(false);
   const [card, setCard] = useState([]);
 
-  const isLike = () => {
+  const handleLike = () => {
     if(like === false) {
       setLike(true);
+      console.log(props.isLiked)
     } else {
       setLike(false);
+      console.log(props.isLiked)
     }
   }
 
@@ -20,8 +22,8 @@ function Card(props) {
         <div className="card__content">
             <p className="card__text">{props.name}</p>
             <div className="card__buttons-wrap">
-              <button className={`card__button card__button_like ${like ? 'card__button_like_active' : ''}`} onClick={isLike}></button>
-              <button className="card__button card__button_delete" onClick={props.onClick}></button>
+              <button className={`card__button card__button_like ${like ? 'card__button_like_active' : ''}`} onClick={handleLike}></button>
+              <button className="card__button card__button_delete" onClick={props.remove}></button>
             </div>
         </div>
     </div>
