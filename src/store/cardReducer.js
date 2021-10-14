@@ -1,7 +1,7 @@
 const FETCH_CARDS = "FETCH_CARDS";
 const DELETE_CARD = "DELETE_CARD";
 const LIKE_CARD = "LIKE_CARD";
-const FILTER_LIKE = "FILTER_LIKE";
+
 
 const defaultState = {
     cards: [],
@@ -13,7 +13,11 @@ export const cardReducer = (state = defaultState, action) => {
         case FETCH_CARDS:
             return {
                 ...state,
-                cards: [...action.payload]
+                cards: [...action.payload.map(card => ({
+                    ...card,
+                    isLiked: false
+                    }))
+                ]
             };
         case DELETE_CARD:
             return {
@@ -23,12 +27,7 @@ export const cardReducer = (state = defaultState, action) => {
         case LIKE_CARD:
             return {
                 ...state,
-                isLiked: action.payload
-            }
-        case FILTER_LIKE:
-            return {
-                ...state
-
+                ...action.payload.isLiked = true,
             }
 
         default:
@@ -38,4 +37,8 @@ export const cardReducer = (state = defaultState, action) => {
 
 export const addAllCards = (payload) => ({type: FETCH_CARDS, payload})
 export const deleteCard = (payload) => ({type: DELETE_CARD, payload})
-export const likeCard = (payload) => ({type: LIKE_CARD, payload})
+// export const likeCard = (payload) => ({type: LIKE_CARD, payload})
+export const likeCard = (payload) => {
+    console.log(payload)
+   return {type: LIKE_CARD, payload}
+}

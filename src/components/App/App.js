@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCards } from '../../api/apiCards';
 import { deleteCard, likeCard } from '../../store/cardReducer';
 import CardList from '../CardList/CardList';
-import Filter from '../Filter/Filter';
 import Header from '../Header/Header';
 import './App.css';
 
@@ -11,32 +10,34 @@ import './App.css';
 function App(props) {
   const dispatch = useDispatch();
   const cards = useSelector(state => state.cards.cards)
-  const isLiked = useSelector(state => state.cards.isLiked)
-  
-  console.log(cards)
+  const [checkboxActive, setCheckboxActive] = useState(false)
+
+  const changeCheckbox = () => {
+    setCheckboxActive(!checkboxActive)
+  }
 
   useEffect(() => {
-    dispatch(fetchCards());
-  }, [dispatch])
+    dispatch(fetchCards())
+  }, [])
 
   const removeCard = (card) => {
     dispatch(deleteCard(card.id));
   }
 
-  const likedCard = () => {
-    dispatch(likeCard(true))
+  const likedCard = (card) => {
+    dispatch(likeCard(card.id))
   }
 
 
   return (
     <div className="app">
       <Header />
-      <Filter />
       <CardList 
         cards={cards}
         removeCard={removeCard}
         likedCard={likedCard}
-        isLiked={isLiked}
+        checkboxActive={checkboxActive}
+        checkbox={changeCheckbox}
       />
     </div>
   );
