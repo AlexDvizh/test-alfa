@@ -9,15 +9,14 @@ import Filter from '../Filter/Filter';
 
 function App() {
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchCards());
-    }, [dispatch]);
-
     const cards = useSelector(state => state.cardList.cards);
     const filteredCards = useSelector(state => state.cardList.filteredCards);
 
     const [isFilterActive, toggleFilter] = useState(false);
+
+    useEffect(() => {
+        dispatch(fetchCards());
+    }, [dispatch]);
 
     const handleFilterChange = (isFilterActive) => {
         toggleFilter(isFilterActive);
