@@ -1,47 +1,42 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCards } from '../../api/apiCards';
-import { deleteCard, likeCard } from '../../store/cardReducer';
 import CardList from '../CardList/CardList';
 import Header from '../Header/Header';
 import './App.css';
+import { fetchCards, filterByLiked } from '../../store/actions';
+import Filter from '../Filter/Filter';
 
 
-function App(props) {
-  const dispatch = useDispatch();
-  const cards = useSelector(state => state.cards.cards)
-  const [checkboxActive, setCheckboxActive] = useState(false)
+function App() {
+    const dispatch = useDispatch();
 
-  const changeCheckbox = () => {
-    setCheckboxActive(!checkboxActive)
-  }
+    useEffect(() => {
+        dispatch(fetchCards());
+    }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(fetchCards())
-  }, [])
+    const cards = useSelector(state => state.cardList.cards);
+    const filteredCards = useSelector(state => state.cardList.filteredCards);
 
-  const removeCard = (card) => {
-    dispatch(deleteCard(card.id));
-  }
+    const [isFilterActive, toggleFilter] = useState(false);
 
-  const likedCard = (card) => {
-    dispatch(likeCard(card.id))
-  }
+    const handleFilterChange = (isFilterActive) => {
+        toggleFilter(isFilterActive);
+        dispatch(filterByLiked(isFilterActive));
+    };
 
 
-  return (
+    return (
     <div className="app">
-      <Header />
-      <CardList 
-        cards={cards}
-        removeCard={removeCard}
-        likedCard={likedCard}
-        checkboxActive={checkboxActive}
-        checkbox={changeCheckbox}
-      />
+        <Header />
+        <Filter 
+            isActive={isFilterActive} 
+            onChange={handleFilterChange} 
+        />
+        <CardList 
+            cards={ isFilterActive ? filteredCards : cards } 
+        />
     </div>
-  );
+    );
 }
-
 
 export default App;

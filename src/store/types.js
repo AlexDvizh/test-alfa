@@ -1,0 +1,4 @@
+export const CARDS_FETCHED = 'CARDS_FETCHED';
+export const TOGGLE_LIKE_CARD = 'TOGGLE_LIKE_CARD';
+export const REMOVE_CARD = 'REMOVE_CARD';
+export const FILTER_BY_LIKED = 'FILTER_BY_LIKED';

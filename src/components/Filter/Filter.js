@@ -1,33 +1,18 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './Filter.css';
 
-function Filter() {
-  const [checked, setChecked] = useState(false);
+function Filter(props) {
+    const isActive = props.isActive;
 
-  const handleChange = () => {
-    setChecked(!checked)
-  }
+    const handleChange = (checked) => {
+        props.onChange(checked);
+    }
 
-
-  return (
-    <div className="filter">
-        {/* <input 
-            className="filter__input" 
-            name="likes"
-            type="checkbox" 
-        ></input> */}
-        <input 
-            type="checkbox" 
-            checked={checked}
-            onChange={handleChange}
-
-        ></input>
-
-        {/* <label className="filter__lable" htmlFor="likes"></label> */}
-        <p className="filter__text">{checked ? "Показать все карточки" : "Показать лайкнутые карточки"}</p>
-    </div>
-  );
+    return (
+        <div className="filter">
+            <input type="checkbox" checked={isActive} onChange={() => { handleChange(!isActive); }} />
+            <p className="filter__text">{isActive ? "Вернуть все карточки" : "Избранное"}</p>
+        </div>
+    );
 }
 
 export default Filter;

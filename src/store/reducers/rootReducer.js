@@ -1,10 +1,10 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { cardReducer } from "./cardReducer";
+import { cardListReducer } from "./cardListReducer";
 
 const rootReducer = combineReducers({
-    cards: cardReducer,
+    cardList: cardListReducer
 })
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
